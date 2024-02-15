@@ -1,0 +1,24 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4em;
+}
+
+.name {
+  font-size: 1.5em;
+  margin-bottom: 1em;
+}
+
+.infoContent {
+  column-count: 2;
+  column-fill: auto;
+  height: 8em;
+}
+
+.borderCountries {
+  margin-right: .75em;
+}
+
+.shadowButton {
+  box-shadow: var(--country-border-shadow);
+}

@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;6..12,600;6..12,800&display=swap');
+
+:root {
+  /*LIGHT MODE*/
+  --color-text-very-dark-blue: hsl(200, 15%, 8%);
+  --color-input-dark-gray: hsl(0, 0%, 52%);
+  --color-background-very-light-gray: hsl(0, 0%, 95%);
+  --color-white: hsl(0, 0%, 100%);
+  --box-shadow-light: 0px 3px 8px -2px hsl(200, 0%, 68%);
+  --gradient-light: hsl(0, 0%, 90%);
+  --country-border-shadow-light: 0px 0px 4px -1px hsl(200, 0%, 68%);
+
+  /*DARK MODE*/
+  --color-background-very-dark-blue: hsl(207, 26%, 17%);
+  --color-dark-mode-elements-dark-blue: hsl(209, 23%, 22%);
+  --box-shadow-dark: 0px 3px 8px -2px hsl(0, 0%, 2%);
+  --gradient-dark: hsl(0, 0%, 14%);
+  --country-border-shadow-dark: 0px 0px 6px -1px hsl(0, 0%, 2%);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+hr {
+  height: 8px;
+  background: linear-gradient(var(--primary-gradient), transparent);
+  border: none;
+}
+
+input[type='text'],
+select {
+    background-color: var(--secondary-bg-color);
+    border: none;
+    color: var(--primary-color);
+    padding: 1em 2em;
+    box-shadow: var(--primary-shadow);
+    border-radius: 3px;
+}
+
+.fixed-width-content {
+  max-width: 1440px;
+  margin: 0 auto;  /* auto jako wyśrodkowanie w poziomie */
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.shadow-button {
+  color: var(--primary-color);
+  box-shadow: var(--primary-shadow);
+  border-radius: 3px;
+  display: inline-block;
+  padding: 0.25em 1em;
+  margin: 0 0.25em;
+  text-decoration: none;
+}
