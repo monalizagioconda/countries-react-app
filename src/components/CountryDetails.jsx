@@ -24,7 +24,7 @@ const CountryDetails = ({
         <div>
           <strong className={styles.borderCountries}>Border Countries:</strong>
           {(borders || []).map(border => (
-            <a key={border} className={`shadow-button ${styles.shadowButton}`} href={`/?country=${border}`}>
+            <a key={border} className={`shadow-button ${styles.shadowButton}`} href={`?country=${border}`}>
               {border}
             </a>
           ))}
