@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import Filters from "./Filters";
-import InfoElement from "./InfoElement";
+import { Link } from "react-router-dom";
+import Filters from "../components/Filters";
+import InfoElement from "../components/InfoElement";
 import styles from "./ListView.module.css";
 
 const API_URL_ALL =
@@ -27,7 +28,7 @@ const transformCountry = ({
   flagUrl,
 });
 
-const ListView = () => {
+const List = () => {
   const [countries, setCountries] = useState([]);
   const [query, setQuery] = useState("");
   const [region, setRegion] = useState("");
@@ -38,7 +39,7 @@ const ListView = () => {
 
   const renderCountryItem = country => (
     <li className={styles.item} key={country.code}>
-      <a href={`?country=${country.code}`} className={styles.anchor}>
+      <Link to={`countries/${country.code}`} className={styles.anchor}>
         <div className={styles.imageContainer}>
           <img src={country.flagUrl} alt={`${country.name} flag`} className={styles.image} />
         </div>
@@ -48,7 +49,7 @@ const ListView = () => {
           <InfoElement label="Region" value={country.region} />
           <InfoElement label="Capital" value={country.capital} />
         </div>
-      </a>
+      </Link>
     </li>
   );
 
@@ -68,4 +69,4 @@ const ListView = () => {
   );
 };
 
-export default ListView;
+export default List;

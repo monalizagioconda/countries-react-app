@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
-import BackButton from "./BackButton";
-import CountryDetails from "./CountryDetails";
+import BackButton from "../components/BackButton";
+import CountryDetails from "../components/CountryDetails";
 
 const getUrl = countryCode =>
   `https://restcountries.com/v3.1/alpha/${countryCode}?fields=capital,population,name,cioc,region,subregion,flags,currencies,languages,tld,borders`;
 
-const DetailsView = ({ countryCode }) => {
+const Details = ({ countryCode }) => {
   const [country, setCountry] = useState();
 
   useEffect(() => {
@@ -62,4 +62,4 @@ const DetailsView = ({ countryCode }) => {
   );
 };
 
-export default DetailsView;
+export default Details;
