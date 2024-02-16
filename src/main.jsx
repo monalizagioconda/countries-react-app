@@ -17,9 +17,12 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       {
-        path: 'countries',
         element: <List />,
         index: true,
+      },
+      {
+        element: <List />,
+        path: 'countries',
       },
       {
         path: 'countries/:countryId',
@@ -27,7 +30,9 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+], {
+  basename: '/countries-react-app'
+});
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

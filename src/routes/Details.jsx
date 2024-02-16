@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useParams } from 'react-router-dom'
 
 import BackButton from "../components/BackButton";
 import CountryDetails from "../components/CountryDetails";
@@ -6,11 +7,12 @@ import CountryDetails from "../components/CountryDetails";
 const getUrl = countryCode =>
   `https://restcountries.com/v3.1/alpha/${countryCode}?fields=capital,population,name,cioc,region,subregion,flags,currencies,languages,tld,borders`;
 
-const Details = ({ countryCode }) => {
+const Details = () => {
   const [country, setCountry] = useState();
+  const { countryId } = useParams()
 
   useEffect(() => {
-    fetch(getUrl(countryCode))
+    countryId && fetch(getUrl(countryId))
       .then(res => res.json())
       .then((countryData) => {
         if (!countryData) {
@@ -48,7 +50,7 @@ const Details = ({ countryCode }) => {
           borders,
         });
       });
-  }, [countryCode]);
+  }, [countryId]);
 
   return (
     <div>

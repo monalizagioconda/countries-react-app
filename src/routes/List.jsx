@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Filters from "../components/Filters";
 import InfoElement from "../components/InfoElement";
-import styles from "./ListView.module.css";
+import styles from "./List.module.css";
 
 const API_URL_ALL =
   "https://restcountries.com/v3.1/all?fields=capital,population,name,cioc,cca2,ccn3,cca3,region,flags";
@@ -39,7 +39,7 @@ const List = () => {
 
   const renderCountryItem = country => (
     <li className={styles.item} key={country.code}>
-      <Link to={`countries/${country.code}`} className={styles.anchor}>
+      <Link to={`/countries/${country.code}`} className={styles.anchor}>
         <div className={styles.imageContainer}>
           <img src={country.flagUrl} alt={`${country.name} flag`} className={styles.image} />
         </div>
