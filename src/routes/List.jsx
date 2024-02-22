@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom";
+import { setItems as setCountries } from "../reducers/countries.js";
 import Filters from "../components/Filters";
 import InfoElement from "../components/InfoElement";
 import styles from "./List.module.css";
@@ -29,11 +31,12 @@ const transformCountry = ({
 });
 
 const List = () => {
-  const [countries, setCountries] = useState([]);
+  const countries = useSelector(state => state.countries.items)
+  const dispatch = useDispatch()
   const [query, setQuery] = useState("");
   const [region, setRegion] = useState("");
 
-  const filteredCountries = countries.filter(country => {
+  const filteredCountries = countries?.filter(country => {
     return (!query || country.name.toLowerCase().includes(query)) && (!region || country.region === region);
   });
 
@@ -54,17 +57,17 @@ const List = () => {
   );
 
   useEffect(() => {
-    fetch(API_URL_ALL)
-      .then(res => res.json())
-      .then(countriesRaw => {
-        setCountries(countriesRaw.map(transformCountry));
-      });
-  }, []);
+    if (countries === undefined) {
+      fetch(API_URL_ALL)
+        .then(res => res.json())
+        .then(countriesRaw => dispatch(setCountries(countriesRaw.map(transformCountry))));
+    }
+  }, [countries, dispatch]);
 
   return (
     <div>
       <Filters onQuery={setQuery} onRegion={setRegion} />
-      <ul className={styles.list}>{filteredCountries.map(renderCountryItem)}</ul>
+      <ul className={styles.list}>{filteredCountries?.map(renderCountryItem)}</ul>
     </div>
   );
 };
