@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
+import { setData as setCountry } from "../reducers/countries.js";
 import BackButton from "../components/BackButton";
 import CountryDetails from "../components/CountryDetails";
 
@@ -8,16 +10,15 @@ const getUrl = countryCode =>
   `https://restcountries.com/v3.1/alpha/${countryCode}?fields=capital,population,name,cioc,region,subregion,flags,currencies,languages,tld,borders`;
 
 const Details = () => {
-  const [country, setCountry] = useState();
+  const dispatch = useDispatch()
   const { countryId } = useParams()
+  const country = useSelector(state => state.countries.data[countryId]);
 
   useEffect(() => {
-    countryId && fetch(getUrl(countryId))
+    if (!country) fetch(getUrl(countryId))
       .then(res => res.json())
       .then((countryData) => {
-        if (!countryData) {
-          return setCountry(undefined);
-        }
+        if (!countryData) return
 
         const {
           capital,
@@ -33,7 +34,7 @@ const Details = () => {
           borders,
         } = countryData;
 
-        setCountry({
+        dispatch(setCountry({
           capital: capital && capital[0],
           population: population.toLocaleString(),
           name,
@@ -48,9 +49,9 @@ const Details = () => {
           languages: Object.values(languages).join(", "),
           tld: tld[0],
           borders,
-        });
+        }));
       });
-  }, [countryId]);
+  }, [country, countryId, dispatch]);
 
   return (
     <div>
