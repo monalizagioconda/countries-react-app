@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styles from "./CountryDetails.module.css";
 import InfoElement from "./InfoElement";
 
@@ -24,9 +25,9 @@ const CountryDetails = ({
         <div>
           <strong className={styles.borderCountries}>Border Countries:</strong>
           {(borders || []).map(border => (
-            <a key={border} className={`shadow-button ${styles.shadowButton}`} href={`?country=${border}`}>
+            <Link to={`/countries/${border}`} key={border} className={`shadow-button ${styles.shadowButton}`}>
               {border}
-            </a>
+            </Link>
           ))}
         </div>
       </div>
