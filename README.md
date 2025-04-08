@@ -1,8 +1,16 @@
-# React + Vite
+# Countries app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## React + Vite
 
-Currently, two official plugins are available:
+- single-page application
+- REST API
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The app was creacted as a challenge prepared by Frontend Mentor.
+Additionally, the app uses extra libraries such as:
+
+- react-redux
+- reduxjs/toolkit
+- react-router
+
+![Countries app view1](./docs/countries-react-app-view1.JPG)
+![Countries app view1](./docs/countries-react-app-view2.JPG)
