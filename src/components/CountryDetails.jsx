@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import styles from "./CountryDetails.module.css";
-import InfoElement from "./InfoElement";
+import styles from './CountryDetails.module.css'
+import InfoElement from './InfoElement'
 
 const CountryDetails = ({
   country: { flagUrl, name, nativeName, population, region, subregion, capital, tld, currencies, languages, borders },
@@ -16,7 +16,7 @@ const CountryDetails = ({
           <InfoElement label="NativeName" value={nativeName} />
           <InfoElement label="Population" value={population} />
           <InfoElement label="Region" value={region} />
-          <InfoElement label="Sub Region" value={subregion || "-"} />
+          <InfoElement label="Sub Region" value={subregion || '-'} />
           <InfoElement label="Capital" value={capital} />
           <InfoElement label="Top Level Domain" value={tld[0]} />
           <InfoElement label="Currencies" value={currencies} />
@@ -32,7 +32,7 @@ const CountryDetails = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CountryDetails;
+export default CountryDetails

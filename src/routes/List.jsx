@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { setItems } from "../reducers/countries.js";
-import Filters from "../components/Filters";
-import InfoElement from "../components/InfoElement";
-import styles from "./List.module.css";
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { setItems } from '../reducers/countries.js'
+import Filters from '../components/Filters'
+import InfoElement from '../components/InfoElement'
+import styles from './List.module.css'
 
-const API_URL_ALL =
-  "https://restcountries.com/v3.1/all?fields=capital,population,name,cioc,cca2,ccn3,cca3,region,flags";
+const API_URL_ALL = 'https://restcountries.com/v3.1/all?fields=capital,population,name,cioc,cca2,ccn3,cca3,region,flags'
 
 const transformCountry = ({
   capital,
@@ -28,17 +27,17 @@ const transformCountry = ({
   code: cioc || cca2 || cca3 || ccn3,
   region,
   flagUrl,
-});
+})
 
 const List = () => {
-  const countries = useSelector(state => state.countries.items);
-  const dispatch = useDispatch();
-  const [query, setQuery] = useState("");
-  const [region, setRegion] = useState("");
+  const countries = useSelector(state => state.countries.items)
+  const dispatch = useDispatch()
+  const [query, setQuery] = useState('')
+  const [region, setRegion] = useState('')
 
   const filteredCountries = query
     ? countries?.filter(country => country.name.toLowerCase().includes(query) && (!region || country.region === region))
-    : countries;
+    : countries
 
   const renderCountryItem = country => (
     <li className={styles.item} key={country.code}>
@@ -54,22 +53,22 @@ const List = () => {
         </div>
       </Link>
     </li>
-  );
+  )
 
   useEffect(() => {
     if (countries === undefined) {
       fetch(API_URL_ALL)
         .then(res => res.json())
-        .then(countriesRaw => dispatch(setItems(countriesRaw.map(transformCountry))));
+        .then(countriesRaw => dispatch(setItems(countriesRaw.map(transformCountry))))
     }
-  }, [countries, dispatch]);
+  }, [countries, dispatch])
 
   return (
     <div>
       <Filters onQuery={setQuery} onRegion={setRegion} />
       <ul className={styles.list}>{filteredCountries?.map(renderCountryItem)}</ul>
     </div>
-  );
-};
+  )
+}
 
-export default List;
+export default List

@@ -1,26 +1,26 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 
-import { setData } from "../reducers/countries.js";
-import BackButton from "../components/BackButton";
-import CountryDetails from "../components/CountryDetails";
-import HomeButton from "../components/HomeButton.jsx";
+import { setData } from '../reducers/countries.js'
+import BackButton from '../components/BackButton'
+import CountryDetails from '../components/CountryDetails'
+import HomeButton from '../components/HomeButton.jsx'
 
 const getUrl = countryCode =>
-  `https://restcountries.com/v3.1/alpha/${countryCode}?fields=capital,population,name,cioc,region,subregion,flags,currencies,languages,tld,borders`;
+  `https://restcountries.com/v3.1/alpha/${countryCode}?fields=capital,population,name,cioc,region,subregion,flags,currencies,languages,tld,borders`
 
 const Details = () => {
-  const dispatch = useDispatch();
-  const { countryId } = useParams();
-  const country = useSelector(state => state.countries.data[countryId]);
+  const dispatch = useDispatch()
+  const { countryId } = useParams()
+  const country = useSelector(state => state.countries.data[countryId])
 
   useEffect(() => {
     if (!country)
       fetch(getUrl(countryId))
         .then(res => res.json())
         .then(countryData => {
-          if (!countryData) return;
+          if (!countryData) return
 
           const {
             capital,
@@ -34,7 +34,7 @@ const Details = () => {
             languages,
             tld,
             borders,
-          } = countryData;
+          } = countryData
 
           dispatch(
             setData({
@@ -48,14 +48,14 @@ const Details = () => {
               flagUrl,
               currencies: Object.values(currencies)
                 .map(currency => currency.name)
-                .join(", "),
-              languages: Object.values(languages).join(", "),
+                .join(', '),
+              languages: Object.values(languages).join(', '),
               tld: tld[0],
               borders,
             })
-          );
-        });
-  }, [country, countryId, dispatch]);
+          )
+        })
+  }, [country, countryId, dispatch])
 
   return (
     <div>
@@ -64,7 +64,7 @@ const Details = () => {
       <BackButton />
       {country ? <CountryDetails country={country} /> : <p>Loading country...</p>}
     </div>
-  );
-};
+  )
+}
 
-export default Details;
+export default Details

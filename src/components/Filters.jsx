@@ -1,14 +1,14 @@
-import { SearchOutline as SearchOutlineIcon } from "react-ionicons";
-import styles from "./Filters.module.css";
+import { SearchOutline as SearchOutlineIcon } from 'react-ionicons'
+import styles from './Filters.module.css'
 
 function Filters({ onQuery, onRegion }) {
   const handleInput = e => {
-    onQuery(e.target.value.toLowerCase().trim());
-  };
+    onQuery(e.target.value.toLowerCase().trim())
+  }
 
   const handleChange = e => {
-    onRegion(e.target.value);
-  };
+    onRegion(e.target.value)
+  }
 
   return (
     <div className={styles.filters}>
@@ -31,7 +31,7 @@ function Filters({ onQuery, onRegion }) {
         <option value="Oceania">Oceania</option>
       </select>
     </div>
-  );
+  )
 }
 
-export default Filters;
+export default Filters

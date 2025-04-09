@@ -4,7 +4,7 @@ const InfoElement = ({ label, value }) => {
       <strong>{label}: </strong>
       <span>{value}</span>
     </div>
-  );
-};
+  )
+}
 
 export default InfoElement

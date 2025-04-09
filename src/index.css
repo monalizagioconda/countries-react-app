@@ -32,17 +32,17 @@ hr {
 
 input[type='text'],
 select {
-    background-color: var(--secondary-bg-color);
-    border: none;
-    color: var(--primary-color);
-    padding: 1em 2em;
-    box-shadow: var(--primary-shadow);
-    border-radius: 3px;
+  background-color: var(--secondary-bg-color);
+  border: none;
+  color: var(--primary-color);
+  padding: 1em 2em;
+  box-shadow: var(--primary-shadow);
+  border-radius: 3px;
 }
 
 .fixed-width-content {
   max-width: 1440px;
-  margin: 0 auto;  /* auto jako wyśrodkowanie w poziomie */
+  margin: 0 auto; /* auto jako wyśrodkowanie w poziomie */
   padding-left: 40px;
   padding-right: 40px;
 }

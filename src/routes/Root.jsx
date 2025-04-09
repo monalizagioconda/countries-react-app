@@ -5,13 +5,13 @@ import styles from './Root.module.css'
 
 const mql = matchMedia('(prefers-color-scheme: dark)')
 
-const initialTheme = localStorage.getItem('theme') || (mql.matches ? 'dark' : 'light');
+const initialTheme = localStorage.getItem('theme') || (mql.matches ? 'dark' : 'light')
 
 function Root() {
-  const [isDarkMode, setDarkMode] = useState(initialTheme === 'dark');
+  const [isDarkMode, setDarkMode] = useState(initialTheme === 'dark')
 
   const onModeChange = () => {
-    setDarkMode(prevMode => !prevMode);
+    setDarkMode(prevMode => !prevMode)
   }
 
   useEffect(() => {
