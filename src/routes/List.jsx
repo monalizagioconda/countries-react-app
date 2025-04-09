@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { setItems as setCountries } from "../reducers/countries.js";
+import { setItems } from "../reducers/countries.js";
 import Filters from "../components/Filters";
 import InfoElement from "../components/InfoElement";
 import styles from "./List.module.css";
@@ -12,7 +12,7 @@ const API_URL_ALL =
 const transformCountry = ({
   capital,
   population,
-  name: { common: name },
+  name: { common: name }, // aktywny jest tu tylko property 'common' ze zmienioną nazwą na 'name'
   cioc,
   cca2,
   ccn3,
@@ -31,14 +31,14 @@ const transformCountry = ({
 });
 
 const List = () => {
-  const countries = useSelector(state => state.countries.items)
-  const dispatch = useDispatch()
+  const countries = useSelector(state => state.countries.items);
+  const dispatch = useDispatch();
   const [query, setQuery] = useState("");
   const [region, setRegion] = useState("");
 
-  const filteredCountries = countries?.filter(country => {
-    return (!query || country.name.toLowerCase().includes(query)) && (!region || country.region === region);
-  });
+  const filteredCountries = query
+    ? countries?.filter(country => country.name.toLowerCase().includes(query) && (!region || country.region === region))
+    : countries;
 
   const renderCountryItem = country => (
     <li className={styles.item} key={country.code}>
@@ -60,7 +60,7 @@ const List = () => {
     if (countries === undefined) {
       fetch(API_URL_ALL)
         .then(res => res.json())
-        .then(countriesRaw => dispatch(setCountries(countriesRaw.map(transformCountry))));
+        .then(countriesRaw => dispatch(setItems(countriesRaw.map(transformCountry))));
     }
   }, [countries, dispatch]);
 
